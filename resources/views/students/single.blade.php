@@ -63,8 +63,8 @@
                            
                             
                             {{ $units[$unit_id]->unitName  }} </br>
-                              
-                           
+                            
+                            
                         @endforeach
                     </span>
                     <div class="text-xl font-semibold text-gray-600 py-3 flex flex-row justify-between items-center">

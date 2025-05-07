@@ -7,13 +7,15 @@ use App\Models\students;
 use App\Models\techers;
 use App\Models\unit;
 use App\Models\allData;
+use App\Models\teacher_units;
 
 class StudentsController extends Controller
 {
     public function create(){
         $teachers = techers::all();
         $units = unit::all();
-        return view('students.create', ['teachers'=>$teachers, 'units'=>$units]);
+        $teacher_units = teacher_units::all();
+        return view('students.create', ['teachers'=>$teachers, 'units'=>$units, 'teacher_units'=>$teacher_units]);
     }
 
     public function store(Request $request){

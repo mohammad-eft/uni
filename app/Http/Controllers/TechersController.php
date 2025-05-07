@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\techers;
 use App\Models\unit;
+use App\Models\teacher_units;
 
 class TechersController extends Controller
 {
@@ -14,11 +15,17 @@ class TechersController extends Controller
     }
 
     public function store(Request $request){
-        techers::create([
+        $teacher_id = techers::insertGetId([
             "name"=>$request->name,
             "family"=>$request->family,
-            'unit'=>implode(',',$request->unit)
+            // 'unit'=>implode(',',$request->unit)
         ]);
+        foreach($request->unit as $unit){
+            teacher_units::create([
+                'teacher_id'=>$teacher_id,
+                'unit_id'=>$unit
+            ]);
+        }
         // techers::create($request->all());
         return redirect('teachers');
     }

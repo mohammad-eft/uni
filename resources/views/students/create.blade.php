@@ -40,8 +40,25 @@
                 <ul>
                     @foreach($units as $unit)
                     <li>
-                        <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5">
-                        <label for="unit" class="mb-1">{{ $unit->unitName }}</label>
+                        <div>
+                            <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5">
+                            <label for="unit" class="mb-1">{{ $unit->unitName }}</label>
+                        </div>
+                        <div class="mr-10 mb-5">
+                            <ul>
+                                <?php $i=1; ?>
+                                @foreach($teacher_units as $teacher_unit)
+                                    @foreach($teachers as $teacher)
+                                        @if($teacher_unit->unit_id == $unit->id)
+                                            <li>
+                                                <input type="checkbox" name="teacher" id="teacher" value="{{ $teacher->id }}">
+                                                <label for="teacher"> <?php echo $i . " : "; $i++ ?> {{ $teacher->name . " " . $teacher->family }}</label>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </ul>
+                        </div>
                     </li>
                     @endforeach
                 </ul>

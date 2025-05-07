@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class techers extends Model
 {
-    protected $fillable=['name', 'family', 'unit'];
+    protected $fillable=['name', 'family'];
 }
