@@ -20,12 +20,26 @@ class StudentsController extends Controller
         //     // $teacher_a[$tea]=
         // 
         // }
-        foreach($units as $key => $unit){
-            $unitTeachersId = allData::where('unit_id', $unit->id);
-            foreach($unitTeachersId as $id){
-                $teacher[]=techers::find($id);
+        // foreach($units as $unit){
+        //     $unitTeachersIds = teacher_units::where('unit_id', $unit->id);
+        //     foreach($unitTeachersIds as $unitTeachersId){
+        //         dd( $unitTeachersId );
+        //         $teacher[]=techers::find($unitTeachersId);
+        //     }
+        //     $units_teachers['teachers']=$teacher;
+        //     $teacher=[];
+        // }
+        foreach($units as $unit){
+            $unitTeachersIds = teacher_units::where('unit_id', $unit->id);
+            // dd($unitTeachersIds);
+            foreach($unitTeachersIds as $teacher_unit){
+                dd($teacher_unit);
+                if ($teacher_unit->unit_id == $unit->id) {
+                    $teacher[]=techers::find($teacher_unit->id);
+                    dd( $teacher );
+                }
             }
-            $units_teachers[$key]['teachers']=$teacher;
+            $units_teachers['teachers']=$teacher;
             $teacher=[];
         }
         return view('students.create', ['teachers'=>$teachers, 'units'=>$units, 'units_teachers'=>$units_teachers]);
