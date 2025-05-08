@@ -46,17 +46,23 @@
                         </div>
                         <div class="mr-10 mb-5">
                             <ul>
-                                <?php $i=1; ?>
-                                @foreach($teacher_units as $teacher_unit)
-                                    @foreach($teachers as $teacher)
-                                        @if($teacher_unit->unit_id == $unit->id)
+                                <?php 
+                                    $i=1; 
+                                    // dd($units_teachers);
+                                    foreach ($units_teachers->teachers as $teacher) {
+                                        dd($teacher->name);
+                                    }
+                                ?>
+                                <!-- @ foreach($ teacher_units as $ teacher_unit)
+                                    @ foreach($ teachers as $ teacher)
+                                        @ if($ teacher_unit- >unit_id = = $ unit->id) -->
                                             <li>
                                                 <input type="checkbox" name="teacher" id="teacher" value="{{ $teacher->id }}">
                                                 <label for="teacher"> <?php echo $i . " : "; $i++ ?> {{ $teacher->name . " " . $teacher->family }}</label>
                                             </li>
-                                        @endif
-                                    @endforeach
-                                @endforeach
+                                        <!-- @ endif
+                                    @ endforeach
+                                @ endforeach -->
                             </ul>
                         </div>
                     </li>

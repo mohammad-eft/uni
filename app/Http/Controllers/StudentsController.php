@@ -15,7 +15,20 @@ class StudentsController extends Controller
         $teachers = techers::all();
         $units = unit::all();
         $teacher_units = teacher_units::all();
-        return view('students.create', ['teachers'=>$teachers, 'units'=>$units, 'teacher_units'=>$teacher_units]);
+        // $teacher_a;
+        // foreach($teahcers as $teacher){
+        //     // $teacher_a[$tea]=
+        // 
+        // }
+        foreach($units as $key => $unit){
+            $unitTeachersId = allData::where('unit_id', $unit->id);
+            foreach($unitTeachersId as $id){
+                $teacher[]=techers::find($id);
+            }
+            $units_teachers[$key]['teachers']=$teacher;
+            $teacher=[];
+        }
+        return view('students.create', ['teachers'=>$teachers, 'units'=>$units, 'units_teachers'=>$units_teachers]);
     }
 
     public function store(Request $request){
