@@ -48,15 +48,24 @@
                             <ul>
                                 <?php 
                                     $i=1; 
-                                    // dd($units_teachers);
-                                    // foreach ($units_teachers['teachers'] as $teacher) {
-                                    //     dd($teacher);
+                                    // // dd($units_teachers);
+                                    // // foreach ($units_teachers['teachers'] as $teacher) {
+                                    // //     dd($teacher);
+                                    // // }
+                                    // // print_r($units_teachers);
+                                    // foreach ($units_teachers as $unit_teacher) {
+                                    //     foreach($unit_teacher as $techer){
+                                    //         foreach ($techer as $x) {
+                                    //             echo $x->name." ". $x->family ."</br>";
+                                    //         }
+                                    //     }
                                     // }
-                                    // print_r($units_teachers);
-                                    foreach ($units_teachers as $unit_teacher) {
-                                        foreach($unit_teacher as $techer){
-                                            foreach ($techer as $x) {
-                                                echo $x->name." ". $x->family ."</br>";
+                                    // dd($teacherss);
+                                    foreach($teacherss as $teacher){
+                                        foreach ($teacher_units as $teacher_unit) {
+                                            if ($teacher_unit->unit_id == $unit->id) {
+                                                // echo $teacher->name . " " . $teacher->family . "</br>";
+                                                print_r($teacher['teachers']);
                                             }
                                         }
                                     }
@@ -64,11 +73,15 @@
                                 <!-- @ foreach($ teacher_units as $ teacher_unit)
                                     @ foreach($ teachers as $ teacher)
                                         @ if($ teacher_unit- >unit_id = = $ unit->id) -->
+                                        @foreach($teachers as $teacher)
+                                            @if($teacher->unit_id == $unit->id)
 
                                             <li>
                                                 <input type="checkbox" name="teacher" id="teacher[]" value="{{ $teacher->id }}">
                                                 <label for="teacher"> <?php echo $i . " : "; $i++ ?> {{ $teacher->name . " " . $teacher->family }}</label>
                                             </li>
+                                            @endif
+                                        @endforeach
                                         <!-- @ endif
                                     @ endforeach
                                 @ endforeach -->

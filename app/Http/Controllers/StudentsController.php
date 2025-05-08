@@ -14,12 +14,8 @@ class StudentsController extends Controller
     public function create(){
         $teachers = techers::all();
         $units = unit::all();
-        $teacher_units = teacher_units::all();
-        // $teacher_a;
-        // foreach($teahcers as $teacher){
-        //     // $teacher_a[$tea]=
-        // 
-        // }
+        $teacher_units = teacher_units::all();  
+             
         // foreach($units as $unit){
         //     $unitTeachersIds = teacher_units::where('unit_id', $unit->id);
         //     foreach($unitTeachersIds as $unitTeachersId){
@@ -29,20 +25,30 @@ class StudentsController extends Controller
         //     $units_teachers['teachers']=$teacher;
         //     $teacher=[];
         // }
-        foreach($units as $unit){
-            $unitTeachersIds = teacher_units::where('unit_id', $unit->id);
-            // dd($unitTeachersIds);
-            foreach($unitTeachersIds as $teacher_unit){
-                dd($teacher_unit);
-                if ($teacher_unit->unit_id == $unit->id) {
-                    $teacher[]=techers::find($teacher_unit->id);
-                    dd( $teacher );
-                }
+
+        // foreach($units as $unit){
+        //     $unitTeachersIds = teacher_units::where('unit_id', $unit->id);
+        //     // dd($unitTeachersIds);
+        //     foreach($unitTeachersIds as $teacher_unit){
+        //         dd($teacher_unit);
+        //         if ($teacher_unit->unit_id == $unit->id) {
+        //             $teacher[]=techers::find($teacher_unit->id);
+        //             dd( $teacher );
+        //         }
+        //     }
+        //     $units_teachers['teachers']=$teacher;
+        //     $teacher=[];
+        // }
+
+        foreach($units as $key => $unit){
+            $datas = teacher_units::where("unit_id", $unit->id)->get();
+            foreach ($datas as $data) {
+                $teacher[] = techers::find($data->teacher_id);
             }
-            $units_teachers['teachers']=$teacher;
-            $teacher=[];
+            $teacherss[$key]['teachers']=$teacher;
+            $teacher = [];
         }
-        return view('students.create', ['teachers'=>$teachers, 'units'=>$units, 'units_teachers'=>$units_teachers]);
+        return view('students.create', ['teachers'=>$teachers, 'units'=>$units, 'teacher_units'=>$teacher_units, 'teacherss'=>$teacherss]);
     }
 
     public function store(Request $request){
