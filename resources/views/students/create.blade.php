@@ -61,14 +61,16 @@
                                     //     }
                                     // }
                                     // dd($teacherss);
-                                    foreach($teacherss as $teacher){
-                                        foreach ($teacher_units as $teacher_unit) {
-                                            if ($teacher_unit->unit_id == $unit->id) {
+                                    // foreach($units as $unit){
+                                        foreach ($unit->teachers as $teacher) {
+
+                                            echo $teacher->name . " " . $teacher->family . " -- ";
+                                            // if ($teacher_unit->unit_id == $unit->id) {
                                                 // echo $teacher->name . " " . $teacher->family . "</br>";
-                                                print_r($teacher['teachers']);
-                                            }
+                                                // print_r($teacher['teachers']);
+                                            // }
                                         }
-                                    }
+                                    // }
                                 ?>
                                 <!-- @ foreach($ teacher_units as $ teacher_unit)
                                     @ foreach($ teachers as $ teacher)
