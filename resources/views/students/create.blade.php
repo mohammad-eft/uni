@@ -30,9 +30,9 @@
         <!-- <div class="flex flex-col items-start justify-center mb-10">
             <label for="teacher" class="mb-3 font-semibold text-lg">نام استاد :</label>
             <select name="teacher" id="teacher" class="outline-none w-full px-5 py-3 border-b">
-                @foreach($teachers as $teacher)
+                @ foreach($ teachers as $teacher)
                 <option value="{,{ $teacher->id }}">{,{ $teacher->name . " " . $teacher->family }}</option>
-                @endforeach
+                @ endforeach
             </select>
         </div> -->
         <div class="flex flex-col items-start justify-center mb-10">
@@ -62,27 +62,24 @@
                                     // }
                                     // dd($teacherss);
                                     // foreach($units as $unit){
-                                        foreach ($unit->teachers as $teacher) {
+                                        // foreach ($unit->teachers as $teacher) {
 
-                                            echo $teacher->name . " " . $teacher->family . " -- ";
+                                            // echo $teacher->name . " " . $teacher->family . " -- ";
                                             // if ($teacher_unit->unit_id == $unit->id) {
                                                 // echo $teacher->name . " " . $teacher->family . "</br>";
                                                 // print_r($teacher['teachers']);
                                             // }
-                                        }
+                                        // }
                                     // }
                                 ?>
                                 <!-- @ foreach($ teacher_units as $ teacher_unit)
                                     @ foreach($ teachers as $ teacher)
                                         @ if($ teacher_unit- >unit_id = = $ unit->id) -->
-                                        @foreach($teachers as $teacher)
-                                            @if($teacher->unit_id == $unit->id)
-
+                                        @foreach($unit->teachers as $teacher)
                                             <li>
-                                                <input type="checkbox" name="teacher" id="teacher[]" value="{{ $teacher->id }}">
+                                                <input type="radio" name="{{$unit->id}}" id="teacher" value="{{ $teacher->id }}">
                                                 <label for="teacher"> <?php echo $i . " : "; $i++ ?> {{ $teacher->name . " " . $teacher->family }}</label>
                                             </li>
-                                            @endif
                                         @endforeach
                                         <!-- @ endif
                                     @ endforeach

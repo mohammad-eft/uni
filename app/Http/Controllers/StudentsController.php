@@ -12,10 +12,7 @@ use App\Models\teacher_units;
 class StudentsController extends Controller
 {
     public function create(){
-        $teachers = techers::all();
-        $units = unit::all();
-        $teacher_units = teacher_units::all();  
-             
+       
         // foreach($units as $unit){
         //     $unitTeachersIds = teacher_units::where('unit_id', $unit->id);
         //     foreach($unitTeachersIds as $unitTeachersId){
@@ -39,6 +36,10 @@ class StudentsController extends Controller
         //     $units_teachers['teachers']=$teacher;
         //     $teacher=[];
         // }
+        // $teachers = techers::all();
+        // $teacher_units = teacher_units::all();  
+        
+        $units = unit::all();
 
         foreach($units as $key => $unit){
             $teachersUnits = teacher_units::where("unit_id", $unit->id)->get();
@@ -50,10 +51,12 @@ class StudentsController extends Controller
             // $unit["teachers"] = $teacher;
             $teacher = [];
         }
-        return view('students.create', ['teachers'=>$teachers, 'units'=>$units, 'teacher_units'=>$teacher_units]);
+        return view('students.create', ['units'=>$units]);
     }
 
     public function store(Request $request){
+        dd($request->all());
+        die();
         $student_id = students::insertGetId(
             [
                 'name'=>$request->name,

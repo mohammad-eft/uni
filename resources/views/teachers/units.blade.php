@@ -18,18 +18,26 @@
 
     <div>
         <ul class="flex flex-col justify-between items-start w-1/2 m-auto mt-10">
-            <?php $i=1; ?>
-    @foreach($unit_id as $unit)
-        @foreach($unit as $x)
+            <?php 
+            $i=1; 
+            // foreach ($units->units as $unit) {
+            //     echo $unit->unitName;
+                
+            //     // dd($unit);
+            // }
+            // dd($teachers->units->toArray());
+            ?>
+    <!-- @ foreach($ unit_id as $ unit) -->
+        @foreach($teacher->units as $teacherr)
             <li class="font-bold px-5 py-2 rounded-md text-md text-gray-600 mb-5">
                 <span class="font-normal text-black">
                 <?php echo $i." : " ?>
                 </span>
-                {{ $units[$x]->unitName }} 
+                {{ $teacherr->unitName }} 
             </li>
             <?php $i++; ?>
         @endforeach
-    @endforeach
+    <!-- @ endforeach -->
         </ul>
     </div>
 

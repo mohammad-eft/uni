@@ -49,16 +49,42 @@ class TechersController extends Controller
     }
 
     public function show_units(string $id){
-        $unit_id;
-        $units;
+        // $unit_id;
+        // $units;
+        // foreach($teacher as $x){
+        //     $unit_id[$teacher->id]=explode(',', $teacher->unit);
+        // }
+        // foreach(unit::all() as $unit){
+        //     $units[$unit->id]=$unit;
+        // }
+        // $teacher = techers::find($id);
+        // $teachers_units = teacher_units::all();
+        // foreach($teachers_units as $key => $teacher_unit){
+        //     $teachers[] = unit::where('id', $teacher_unit->unit_id);
+        //     foreach ($teachers as $teacher) {
+        //         $data[] = techers::find($data->teacher_id);
+        //     }
+        //     $units[$key]['teachers']=$teacher;
+        //     // $unit->teachers = $teacher;
+        //     // $unit["teachers"] = $teacher;
+        //     $teacher = [];
+        // }
         $teacher = techers::find($id);
-        foreach($teacher as $x){
-            $unit_id[$teacher->id]=explode(',', $teacher->unit);
-        }
-        foreach(unit::all() as $unit){
-            $units[$unit->id]=$unit;
-        }
-        return view('teachers.units', ['units'=>$units, 'unit_id'=>$unit_id, 'teacher'=>$teacher]);
+        // $teachers = techers::all();
+
+        // foreach ($teachers as $key => $teacher) {
+            $teacher_units = teacher_units::where('teacher_id', $teacher->id)->get();
+            foreach($teacher_units as $unit){
+                $units_teacher[]=unit::find($unit->unit_id);
+            }
+            $teacher['units']=$units_teacher;
+            // $units_teacher=[];
+        // }
+        // foreach($teachers as $data){
+        //     dd($data->name);
+
+        // }
+        return view('teachers.units', [ 'teacher'=>$teacher]);
     }
 
     public function show(string $id){
