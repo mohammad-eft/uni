@@ -9,6 +9,9 @@
 <body>
 @include('header')
     <div class="w-full mt-10 text-center">
+        <h1 class="mb-10 font-bold text-5xl text-center text-blue-500 mt-10">
+        صفحه سینگل {{ $student->name . " " . $student->family }}
+    </h1>
         <div class="w-11/12 m-auto">
             <div class="grid grid-cols-7 gap-5 mb-5 border-b pb-2">
                 <span class="block text-xl font-bold text-gray-600 py-3 border-l">
@@ -38,8 +41,8 @@
             // foreach($teacher as $x){
             //     echo $x."</br>";
             // }
-            print_r($teacher);
-            die();
+            // print_r($teacher);
+            // dd($student->toArray());
             ?>
             <div class="grid grid-cols-7 gap-5 my-3">        
                     <span class="block text-xl font-semibold text-gray-600 py-3 border-l">
@@ -55,17 +58,18 @@
                         {{ $student->age }}
                     </span>
                     <span class="block text-xl font-semibold text-gray-600 py-3 border-l">
-                        {{ $teacher->name . " " . $teacher->family }}
+                        <!-- { { $ teacher->name . " " . $ teacher->family } } -->
+                           @foreach($student->teacher as $teacher)
+                                {{ $teacher->name . " " . $teacher->family }}
+                           @endforeach
                     </span>
                     <span class="block text-start  text-sm font-normal text-gray-600 py-3 border-l">
-                        @foreach($units_id as $unit_id)
-                           <!-- <,?php echo $unit_id; ?> -->
-                           
-                            
-                            {{ $units[$unit_id]->unitName  }} </br>
-                            
-                            
-                        @endforeach
+                        <!-- @ foreach($ units_id as $ unit_id)
+                            { { $ units[$ unit_id]->unitName  } } </br>
+                        @ endforeach -->
+                        @foreach($student->unit as $unit)
+                                {{ $unit->unitName }}
+                           @endforeach
                     </span>
                     <div class="text-xl font-semibold text-gray-600 py-3 flex flex-row justify-between items-center">
                         <a href="{{ url('/students/edit/' . $student->id) }}" class="block px-3 py-1 rounded-sm bg-lime-300 hover:bg-green-600 hover:text-white transition-all duration-200 font-bold">ویرایش</a>

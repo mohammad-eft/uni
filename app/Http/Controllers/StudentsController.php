@@ -55,8 +55,6 @@ class StudentsController extends Controller
     }
 
     public function store(Request $request){
-        dd($request->all());
-        die();
         $student_id = students::insertGetId(
             [
                 'name'=>$request->name,
@@ -65,38 +63,39 @@ class StudentsController extends Controller
                 // 'teacher'=>$this->teachers($request),
                 // 'unit'=>implode(',',$request->unit)
             ]);
-            foreach ($request->unit as $unit) {
+            foreach ($request->unit as $units) {
                 allData::create([
                     'student_id'=>$student_id,
-                    'teacher_id'=>$this -> teachers($request),
-                    'unit_id'=>$unit
+                    'teacher_id'=>$request[$units],
+                    'unit_id'=>$units
                 ]);
+                // dd($request[$units]);
             }
         return redirect('students');
     }
 
-    public function teachers(Request $request){
-        // $units;
-        $teachers;
-        // foreach(students::all() as $student){
-        //     $units [$student->id]= $student->unit;
-        // }
-        // foreach (techers::all() as $teacher) {
-        //     foreach(explode(',' ,$teacher->unit) as $unit){
-        //         $teachers[$teacher->id]= $unit;
-        //     }
-        // }
-        foreach($request->unit as $unit){
-            foreach(techers::all() as $teacher){
-                foreach (explode(',',$teacher->unit) as $teacher_unit) {
-                    if ($teacher_unit == $unit) {
-                        $teachers[$unit]=$teacher->id;
-                    }
-                }
-            }
-        }
-        return implode(',',$teachers);
-    }
+    // public function teachers(Request $request){
+    //     // $units;
+    //     $teachers;
+    //     // foreach(students::all() as $student){
+    //     //     $units [$student->id]= $student->unit;
+    //     // }
+    //     // foreach (techers::all() as $teacher) {
+    //     //     foreach(explode(',' ,$teacher->unit) as $unit){
+    //     //         $teachers[$teacher->id]= $unit;
+    //     //     }
+    //     // }
+    //     foreach($request->unit as $unit){
+    //         foreach(techers::all() as $teacher){
+    //             foreach (explode(',',$teacher->unit) as $teacher_unit) {
+    //                 if ($teacher_unit == $unit) {
+    //                     $teachers[$unit]=$teacher->id;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return implode(',',$teachers);
+    // }
 
     public function index(){
         $students = students::all();
@@ -129,8 +128,8 @@ class StudentsController extends Controller
     }
 
     public function show(string $id){
-        $student = students::find($id);
-        $teacher = techers::find($student->teacher);
+        // $student = students::find($id);
+        // $teacher = techers::find($student->teacher);
         // $str;
         // $teachers;
         // foreach (explode(',' ,$student->teacher) as $teacher) {
@@ -139,12 +138,24 @@ class StudentsController extends Controller
         // foreach($students as $field){
         //     $teachers[$teacher->id]=$str;
         // }
-        $units_id = explode(',', $student->unit);
-        $units;
-        foreach(unit::all() as $unit){
-            $units[$unit->id] = $unit;
+        // $units_id = explode(',', $student->unit);
+        // $units;
+        // foreach(unit::all() as $unit){
+        //     $units[$unit->id] = $unit;
+        // }
+        $student = students::find($id);
+        $students_id = allData::where('student_id', $student->id)->get();
+        foreach($students_id as $student_id){
+            $unit[] = unit::find($student_id->unit_id);
+            $teacher[] = techers::find($student_id->teacher_id);
         }
-        return view('students.single', ["student"=>$student, 'teacher'=>$teacher,'units_id'=>$units_id , 'units'=>$units]);
+        $student['unit']=$unit;
+        $student['teacher']=$teacher;
+
+        // dd($student);
+        return view('students.single', ["student"=>$student,
+        //  'teacher'=>$teacher,'units_id'=>$units_id , 'units'=>$units
+        ]);
     }
 
     public function edit(string $id){
