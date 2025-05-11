@@ -22,12 +22,27 @@
             <input type="text" name="family" id="family" value="{{ $teacher->family }}" class="w-full outline-none py-2 px-5 border-b">
         </div>
         <div class="w-full flex flex-col items-start justify-around mt-5">
-            <label for="unit">واحد درسی :</label>
-            <select name="unit" id="unit" class="w-full outline-none py-2 px-5 border-b">
-                @foreach($units as $unit)
-                <option value="{{ $unit->id }}"<?php if($teacher->unit == $unit->id){ echo 'selected'; } ?>>{{ $unit->unitName }}</option>
-                @endforeach
-            </select>
+            <label for="unit" class="mb-3 font-semibold text-lg">واحد درسی :</label>
+            <!-- <select name="unit" id="unit" class="outline-none w-full px-5 py-3 border-b"> -->
+                <ul>
+                    <?php
+                    // dd($allUnits);
+                    ?>
+                    @foreach($allUnits as $unit)
+                        @foreach($teacher->units as $teacher_unit)
+                        <?php //dd($unit->id); ?>
+                    <li>
+                        <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5" @if($teacher_unit->id == $unit->id) {{ 'checked' }} @endif>
+                        <label for="unit">{{ $unit->unitName }}</label>
+                        <!-- <option value="{,{ $unit->id },}">{,{ $unit->unitName },}</option> -->
+                    </li>
+                        @endforeach
+                    @endforeach
+                </ul>
+
+
+
+               
         </div>
         <button type="submit" class="mt-10 bg-gray-400 text-white font-bold px-5 py-2 rounded-md hover:bg-slate-500 transition-all duration-200">بزن ثبتو</button>
     </form>

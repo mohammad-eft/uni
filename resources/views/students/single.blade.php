@@ -60,7 +60,11 @@
                     <span class="block text-xl font-semibold text-gray-600 py-3 border-l">
                         <!-- { { $ teacher->name . " " . $ teacher->family } } -->
                            @foreach($student->teacher as $teacher)
-                                {{ $teacher->name . " " . $teacher->family }}
+                           <span class="block">
+                               {{ $teacher->name . " " . $teacher->family }} 
+
+                           </span>
+                                
                            @endforeach
                     </span>
                     <span class="block text-start  text-sm font-normal text-gray-600 py-3 border-l">
@@ -68,7 +72,9 @@
                             { { $ units[$ unit_id]->unitName  } } </br>
                         @ endforeach -->
                         @foreach($student->unit as $unit)
-                                {{ $unit->unitName }}
+                        <span class="block">
+                            {{ $unit->unitName }}
+                        </span>
                            @endforeach
                     </span>
                     <div class="text-xl font-semibold text-gray-600 py-3 flex flex-row justify-between items-center">

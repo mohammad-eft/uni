@@ -95,16 +95,38 @@ class TechersController extends Controller
 
     public function edit(string $id){
         $teacher = techers::find($id);
-        $units = unit::all();
-        return view('teachers.edit', ['teacher'=>$teacher, 'units'=>$units]);
+        $allUnits = unit::all();
+        $teachers_units = teacher_units::where('teacher_id', $teacher->id)->get();
+        foreach ($teachers_units as $teacher_unit) {
+            $units[]=unit::find($teacher_unit->unit_id);
+        }
+        $teacher['units']=$units;
+        $units=[];
+        return view('teachers.edit', ['teacher'=>$teacher, 'allUnits'=>$allUnits]);
     }
 
     public function update(Request $request){
         $teacher = techers::find($request->id);
-        $teacher->name = $request->name;
-        $teacher->family = $request->family;
-        $teacher->unit = $request->unit;
+        // dd($request->all());
+        // $teacher_units = teacher_units::all();
+        // foreach ($teacher_units as $key => $teachers) {
+            $teachers_id = teacher_units::where('teacher_id', $teacher->id)->get();
+            // dd($teachers_id);
+            foreach($teachers_id as $teacher_id){
+                $unit[] = unit::find($teacher_id->unit_id);
+            }
+            $teacher['unit']=$unit;
+            $unit = [];
+            // dd($teacher);
+        // }
+        foreach ($teacher->unit as $teacher_unit) {
+            $teacher->name = $request->name;
+            $teacher->family = $request->family;
+            $teacher_unit->id = $request->unit;
+            // dd($teacher_unit->id);
+        }
         $teacher->save();
+        $teacher_unit->save();
         var_dump($request->unit);
         return redirect('teachers');
     }
