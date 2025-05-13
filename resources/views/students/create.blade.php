@@ -77,7 +77,8 @@
                                         @ if($ teacher_unit- >unit_id = = $ unit->id) -->
                                         @foreach($unit->teachers as $teacher)
                                             <li>
-                                                <input type="radio" name="{{$unit->id}}" id="teacher" value="{{ $teacher->id }}">
+                                                <?php //dd($teacher->name); ?>
+                                                <input type="radio" name="{{ $unit->id }}" id="teacher" value="{{ $teacher->id }}">
                                                 <label for="teacher"> <?php echo $i . " : "; $i++ ?> {{ $teacher->name . " " . $teacher->family }}</label>
                                             </li>
                                         @endforeach

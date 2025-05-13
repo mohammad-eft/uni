@@ -51,6 +51,7 @@ class StudentsController extends Controller
             // $unit["teachers"] = $teacher;
             $teacher = [];
         }
+        // dd($units->toArray());
         return view('students.create', ['units'=>$units]);
     }
 

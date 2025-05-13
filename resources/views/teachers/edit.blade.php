@@ -27,16 +27,20 @@
                 <ul>
                     <?php
                     // dd($allUnits);
+                    $i=1;
                     ?>
                     @foreach($allUnits as $unit)
-                        @foreach($teacher->units as $teacher_unit)
-                        <?php //dd($unit->id); ?>
+                     
                     <li>
-                        <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5" @if($teacher_unit->id == $unit->id) {{ 'checked' }} @endif>
+                        <?php //print_r($teacher_unit->toArray());
+                        echo $i;
+                        ?>
+                        <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5" @if(in_array($unit->id, $teacher->units)) {{ 'checked' }} @endif>
                         <label for="unit">{{ $unit->unitName }}</label>
                         <!-- <option value="{,{ $unit->id },}">{,{ $unit->unitName },}</option> -->
+                         <?php $i++; ?>
                     </li>
-                        @endforeach
+                        
                     @endforeach
                 </ul>
 

@@ -37,8 +37,14 @@
                     <span class="block text-xl font-semibold text-gray-600 py-3 border-l">
                         {{ $teacher->family }}
                     </span>
-                    <span class="block text-xl font-semibold text-gray-600 py-3 border-l">
-                        {{ $unit->unitName }}
+                    <span class="block text-md font-normal text-gray-600 py-3 border-l text-start">
+                        <?php $i = 1; ?>
+                        @foreach($teacher->units as $units)
+                        <div> <?= $i . " : "; ?>
+                            {{ $units->unitName }}
+                        </div>
+                        <?php $i++; ?>
+                        @endforeach
                     </span>
                     <div class="text-xl font-semibold text-gray-600 py-3 flex flex-row justify-between items-center">
                         <a href="{{ url('/teachers/edit/' . $teacher->id) }}" class="block px-3 py-1 rounded-sm bg-lime-300 hover:bg-green-600 hover:text-white transition-all duration-200 font-bold">ویرایش</a>
