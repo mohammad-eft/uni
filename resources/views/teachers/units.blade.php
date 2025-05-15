@@ -28,12 +28,12 @@
             // dd($teachers->units->toArray());
             ?>
     <!-- @ foreach($ unit_id as $ unit) -->
-        @foreach($teacher->units as $teacherr)
+        @foreach($teacher->units as $unit)
             <li class="font-bold px-5 py-2 rounded-md text-md text-gray-600 mb-5">
                 <span class="font-normal text-black">
                 <?php echo $i." : " ?>
                 </span>
-                {{ $teacherr->unitName }} 
+                {{ $unit->unitName }} 
             </li>
             <?php $i++; ?>
         @endforeach

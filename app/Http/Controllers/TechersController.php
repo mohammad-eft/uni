@@ -78,8 +78,11 @@ class TechersController extends Controller
             $teacher_units = teacher_units::where('teacher_id', $teacher->id)->get();
             foreach($teacher_units as $unit){
                 $units_teacher[]=unit::find($unit->unit_id);
+                // dd($unit);
             }
             $teacher['units']=$units_teacher;
+            // dd($teacher);
+            
             // $units_teacher=[];
         // }
         // foreach($teachers as $data){
@@ -93,10 +96,16 @@ class TechersController extends Controller
         $teacher = techers::find($id);
         // $students = students::all();
         $allData = allData::select('student_id')->where('teacher_id', $id)->get();
+        // dd($allData);
+        // $allData = allData::where('teacher_id', $id)->get();
+        // dd($allData);
         foreach($allData as $data){
-            $students_id[]= students::find($data);
+            // dd($data->student_id);
+            $students_id[]= students::find($data->student_id);
         }
+        // dd($students_id);
         $teacher['students']=$students_id;
+        // dd($teacher);
         
         return view('teachers.students', ['teacher'=>$teacher]);
         

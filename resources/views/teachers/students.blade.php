@@ -23,8 +23,8 @@
             <?php 
             $i=1; 
             ?>
-    @foreach($teacher->students as $students)
-        @foreach($students as $student)
+    @foreach($teacher->students as $student)
+        <!-- @ foreach($ students as $ student) -->
             <li class="font-bold px-5 py-2 rounded-md text-md text-gray-600 mb-5">
                 <span class="font-normal text-black">
                 <?php echo $i." : " ?>
@@ -32,7 +32,7 @@
                 {{ $student->name . " " . $student->family }}
             </li>
             <?php $i++; ?>
-        @endforeach
+        <!-- @ endforeach -->
     @endforeach
         </ul>
     </div>
