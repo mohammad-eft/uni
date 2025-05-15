@@ -13,11 +13,11 @@
     <form action="{{ url('unit/update') }}" method="POST" class="w-1/2 mt-20 border border-gray-400 rounded-2xl shadow shadow-gray-500 flex flex-col items-center m-auto p-10">
         @csrf
         <input type="hidden" name="id" id="id" value="{{ $unit->id }}">
-        <div class="w-full flex flex-col items-start justify-around mt-5">
+        <div class="w-full flex flex-col items-start justify-around mt-5" require>
             <label for="unitName">نام واحد درسی :</label>
             <input type="text" name="unitName" id="unitName" value="{{ $unit->unitName }}" class="w-full outline-none py-2 px-5 border-b">
         </div>
-        <div class="w-full flex flex-col items-start justify-around mt-5">
+        <div class="w-full flex flex-col items-start justify-around mt-5" require>
             <label for="unitCount">تعداد واحد :</label>
             <input type="text" name="unitCount" id="unitCount" value="{{ $unit->unitCount }}" class="w-full outline-none py-2 px-5 border-b">
         </div>

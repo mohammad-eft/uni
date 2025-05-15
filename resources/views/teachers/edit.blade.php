@@ -15,11 +15,11 @@
         <input type="hidden" name="id" id="id" value="{{ $teacher->id }}">
         <div class="w-full flex flex-col items-start justify-around mt-5">
             <label for="name">نام :</label>
-            <input type="text" name="name" id="name" value="{{ $teacher->name }}" class="w-full outline-none py-2 px-5 border-b">
+            <input type="text" name="name" id="name" value="{{ $teacher->name }}" class="w-full outline-none py-2 px-5 border-b" require>
         </div>
         <div class="w-full flex flex-col items-start justify-around mt-5">
             <label for="family">نام خانوادگی :</label>
-            <input type="text" name="family" id="family" value="{{ $teacher->family }}" class="w-full outline-none py-2 px-5 border-b">
+            <input type="text" name="family" id="family" value="{{ $teacher->family }}" class="w-full outline-none py-2 px-5 border-b" require>
         </div>
         <div class="w-full flex flex-col items-start justify-around mt-5">
             <label for="unit" class="mb-3 font-semibold text-lg">واحد درسی :</label>
@@ -34,6 +34,7 @@
                     <li>
                         <?php //print_r($teacher_unit->toArray());
                         echo $i;
+                        // dd($teacher->units);
                         ?>
                         <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5" @if(in_array($unit->id, $teacher->units)) {{ 'checked' }} @endif>
                         <label for="unit">{{ $unit->unitName }}</label>

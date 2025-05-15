@@ -18,31 +18,38 @@
         <input type="hidden" name="id" id="id" value="{{ $student->id }}">
         <div class="w-full flex flex-col items-start justify-around mt-5">
             <label for="name">نام :</label>
-            <input type="text" name="name" id="name" value="{{ $student->name }}" class="w-full outline-none py-2 px-5 border-b">
+            <input type="text" name="name" id="name" value="{{ $student->name }}" class="w-full outline-none py-2 px-5 border-b" require>
         </div>
         <div class="w-full flex flex-col items-start justify-around mt-5">
             <label for="family">نام خانوادگی :</label>
-            <input type="text" name="family" id="family" value="{{ $student->family }}" class="w-full outline-none py-2 px-5 border-b">
+            <input type="text" name="family" id="family" value="{{ $student->family }}" class="w-full outline-none py-2 px-5 border-b" require>
         </div>
         <div class="w-full flex flex-col items-start justify-around mt-5">
             <label for="age">سن :</label>
-            <input type="text" name="age" id="age" value="{{ $student->age }}" class="w-full outline-none py-2 px-5 border-b">
+            <input type="text" name="age" id="age" value="{{ $student->age }}" class="w-full outline-none py-2 px-5 border-b" require>
         </div>
-        <div class="w-full flex flex-col items-start justify-around mt-5">
-            <label for="teacher">نام استاد :</label>
-            <input type="text" name="teacher" id="teacher" value="{{ $teacher->name . ' ' . $teacher->family }}" class="w-full outline-none py-2 px-5 border-b">
-        </div>
-        <div class="w-full flex flex-col items-start justify-around mt-5">
-            <label for="unit">نام واحد درسی :</label>
-            <ul>
-                    @foreach($units as $unit)
+        <ul class="w-full flex flex-col items-start justify-around mt-5">
+            @foreach($units as $unit)
+            <li>
+                <div>
+                    <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" @if(in_array($unit->id, $student->units)) {{ 'checked' }} @endif>
+                    <label for="unit">{{ $unit->unitName }}</label>
+                </div>
+                <ul class="mr-10">
+                    @foreach($teachers as $teacher)
+                    @if(in_array($teacher->id, $unit->teacher_units))
                     <li>
-                        <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5" <?php foreach($units_id as $unit_id){ if($unit->id == $unit_id) { echo "checked"; }} ?>>
-                        <label for="unit" class="mb-1">{{ $unit->unitName }}</label>
+                        <div>
+                            <input type="radio" name="{{ $unit->id }}" id="{{ $unit->id }}" value="{{ $teacher->id }}" @if(in_array($teacher->id, $student->teachers)) {{ 'checked' }} @endif>
+                            <label for="{{ $teacher->id }}">{{ $teacher->name . " " . $teacher->family }}</label>
+                        </div>
                     </li>
+                    @endif
                     @endforeach
                 </ul>
-        </div>
+            </li>
+            @endforeach
+        </ul>
         <button type="submit" class="mt-10 bg-gray-400 text-white font-bold px-5 py-2 rounded-md hover:bg-slate-500 transition-all duration-200">بزن ثبتو</button>
     </form>
 </body>

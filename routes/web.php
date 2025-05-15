@@ -21,6 +21,7 @@ Route::get('/teachers/edit/{id}', [TechersController::class, 'edit']);
 Route::post('/teacher/update', [TechersController::class, 'update']);
 Route::get('/teachers/delete/{id}', [TechersController::class, 'delete']);
 Route::get('/teachers/show_units/{id}', [TechersController::class, 'show_units']);
+Route::get('/teachers/show_students/{id}', [TechersController::class, 'show_students']);
 
 Route::get('/units/create', [UnitController::class, "create"]);
 Route::post('/units/submit', [UnitController::class, "store"]);

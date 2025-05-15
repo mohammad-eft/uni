@@ -101,8 +101,8 @@ class StudentsController extends Controller
     public function index(){
         $students = students::all();
         // $teachers = [];
-        $units_id;
-        $units;
+        // $units_id;
+        // $units;
         // foreach ($students as $student) {
         //     $teacher = techers::find($student->teacher);
         //     $teachers [$student->teacher]= $teacher->name ." ". $teacher->family;
@@ -161,10 +161,41 @@ class StudentsController extends Controller
 
     public function edit(string $id){
         $student = students::find($id);
-        $teacher = techers::find($student->teacher);
+        $teachers = techers::all();
         $units = unit::all();
-        $units_id = explode(',', $student->unit);
-        return view('students.edit', ['student'=>$student, 'units'=>$units, 'units_id'=>$units_id, 'teacher'=>$teacher]);
+        $allData_teacher = allData::select('teacher_id', 'unit_id')->where('student_id', $id)->get();
+        foreach($allData_teacher as $data){
+            $teachers_id []= $data->teacher_id;
+            $unit_id []= $data->unit_id;
+        }
+        $student['teachers'] = $teachers_id;
+        $student['units']= $unit_id;
+
+        foreach($units as $key => $unit){
+            $teachers_units = teacher_units::select('teacher_id')->where('unit_id', $unit->id)->get();
+            // dd($teachers_units);
+            if (count($teachers_units) > 0) {
+                foreach($teachers_units as $teacher_unit){
+                    $teacher_units_id []= $teacher_unit->teacher_id;
+                }
+                $units[$key]['teacher_units']=$teacher_units_id;
+                $teacher_units_id=[];
+                // dd($teacher_units_id);
+            }
+        }
+        // dd($units->toArray());
+        
+        
+        
+        
+        // $allData_unit = allData::select('unit_id')->where('student_id', $id)->get();
+        // foreach($allData_unit as  $data){
+        //     $unit_id []= $data->unit_id;
+        // }
+        // dd($student->units);
+        // $units = unit::all();
+        // $units_id = explode(',', $student->unit);
+        return view('students.edit', ['student'=>$student, 'teachers'=>$teachers, 'units'=>$units]);
     }
 
     public function update(Request $request){
@@ -172,14 +203,32 @@ class StudentsController extends Controller
         $student->name = $request->name;
         $student->family = $request->family;
         $student->age = $request->age;
-        $student->teacher = $request->teacher;
-        $student->unit = $request->unit;
+
+        $allDatas = allData::where('student_id', $student->id)->get();
+        foreach($allDatas as $allData){
+            $allData->delete();
+        }
+
+        foreach($request->unit as $unit){
+            allData::create([
+                'student_id'=>$student->id,
+                'teacher_id'=>$request[$unit],
+                'unit_id'=>$unit
+            ]);
+        }
+
+        // $student->teacher = $request->teacher;
+        // $student->unit = $request->unit;
         $student->save();
         return redirect('students');
     }
 
     public function delete(string $id){
         $student = students::find($id);
+        $allData = allData::where('student_id', $id)->get();
+        foreach($allData as $data){
+            $data->delete();
+        }
         $student->delete();
         return redirect('students');
     }

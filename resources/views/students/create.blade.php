@@ -17,15 +17,15 @@
         @csrf
         <div class="flex flex-col items-start justify-center mb-10">
             <label for="name" class="mb-3 font-semibold text-lg">نام :</label>
-            <input type="text" name="name" id="name" placeholder="اسمتو بنویس دایی" class="outline-none w-full px-5 py-3 border-b">
+            <input type="text" name="name" id="name" placeholder="اسمتو بنویس دایی" class="outline-none w-full px-5 py-3 border-b" require>
         </div>
         <div class="flex flex-col items-start justify-center mb-10">
             <label for="family" class="mb-3 font-semibold text-lg">نام خانوادگی :</label>
-            <input type="text" name="family" id="family" placeholder="فامیلیتو بنویس دایی" class="outline-none w-full px-5 py-3 border-b">
+            <input type="text" name="family" id="family" placeholder="فامیلیتو بنویس دایی" class="outline-none w-full px-5 py-3 border-b" require>
         </div>
         <div class="flex flex-col items-start justify-center mb-10">
             <label for="age" class="mb-3 font-semibold text-lg">سن :</label>
-            <input type="text" name="age" id="age" placeholder="سنتو بنویس دایی" class="outline-none w-full px-5 py-3 border-b">
+            <input type="text" name="age" id="age" placeholder="سنتو بنویس دایی" class="outline-none w-full px-5 py-3 border-b" require>
         </div>
         <!-- <div class="flex flex-col items-start justify-center mb-10">
             <label for="teacher" class="mb-3 font-semibold text-lg">نام استاد :</label>

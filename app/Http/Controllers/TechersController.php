@@ -7,6 +7,7 @@ use App\Models\techers;
 use App\Models\unit;
 use App\Models\teacher_units;
 use App\Models\allData;
+use App\Models\students;
 
 class TechersController extends Controller
 {
@@ -88,6 +89,19 @@ class TechersController extends Controller
         return view('teachers.units', [ 'teacher'=>$teacher]);
     }
 
+    public function show_students(string $id){
+        $teacher = techers::find($id);
+        // $students = students::all();
+        $allData = allData::select('student_id')->where('teacher_id', $id)->get();
+        foreach($allData as $data){
+            $students_id[]= students::find($data);
+        }
+        $teacher['students']=$students_id;
+        
+        return view('teachers.students', ['teacher'=>$teacher]);
+        
+    }
+
     public function show(string $id){
         $teacher = techers::find($id);
         // $unit = unit::find($teacher->unit);
@@ -115,6 +129,7 @@ class TechersController extends Controller
         }
         // dd($teachers_units);
         $teacher['units']=$test;
+        // dd($teacher->toArray());
         return view('teachers.edit', ['teacher'=>$teacher, 'allUnits'=>$allUnits]);
     }
 
