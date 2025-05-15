@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="w-11/12 m-auto text-start">
-            <a href="{{ url('students') }}" class="py-1 px-3 rounded-md text-white bg-gray-400 transition-all duration-200 hover:bg-gray-600 text-xl font-semibold hover:rounded-r-3xl">بازگشت</a>
+            <a href="{{ url('students') }}" class="py-1 px-3 rounded-md text-white bg-gray-400 transition-all duration-200 hover:bg-gray-600 text-xl font-semibold hover:rounded-r-3xl">چیخ اشیحه ایستمدیم</a>
         </div>
     </div>
 </body>

@@ -7,9 +7,15 @@
     <title>Edit teacher</title>
 </head>
 <body>
+    @include('header')
     <h1 class="text-5xl font-bold text-center mt-10 text-blue-500 text-shadow-rose-500">
         ویرایش استاد
     </h1>
+     <div class="w-11/12 m-auto text-start my-5">
+        <a href="{{ url('students') }}" class="py-1 px-3 rounded-md text-white bg-gray-400 transition-all duration-200 hover:bg-gray-600 text-xl font-semibold hover:rounded-r-3xl">
+            آقا ارادت
+        </a>
+    </div>
     <form action="{{ url('teacher/update') }}" method="POST" class="w-1/2 mt-20 border border-gray-400 rounded-2xl shadow shadow-gray-500 flex flex-col items-center m-auto p-10">
         @csrf
         <input type="hidden" name="id" id="id" value="{{ $teacher->id }}">

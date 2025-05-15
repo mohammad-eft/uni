@@ -7,6 +7,7 @@
     <title>Edit unit</title>
 </head>
 <body>
+    @include('header')
     <h1 class="text-5xl font-bold text-center mt-10 text-blue-500 text-shadow-rose-500">
         ویرایش درس
     </h1>

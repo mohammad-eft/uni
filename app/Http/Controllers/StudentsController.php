@@ -163,8 +163,8 @@ class StudentsController extends Controller
         $student = students::find($id);
         $teachers = techers::all();
         $units = unit::all();
-        $allData_teacher = allData::select('teacher_id', 'unit_id')->where('student_id', $id)->get();
-        foreach($allData_teacher as $data){
+        $allData = allData::select('teacher_id', 'unit_id')->where('student_id', $id)->get();
+        foreach($allData as $data){
             $teachers_id []= $data->teacher_id;
             $unit_id []= $data->unit_id;
         }
@@ -173,14 +173,16 @@ class StudentsController extends Controller
 
         foreach($units as $key => $unit){
             $teachers_units = teacher_units::select('teacher_id')->where('unit_id', $unit->id)->get();
+            // معلم هایی که یک درس را ارائه می دهند
+            // آیدی معلم هایی رو بده که به این درس مرتبط هستند
             // dd($teachers_units);
             if (count($teachers_units) > 0) {
                 foreach($teachers_units as $teacher_unit){
-                    $teacher_units_id []= $teacher_unit->teacher_id;
+                    $unit_teachers_id []= $teacher_unit->teacher_id;
                 }
-                $units[$key]['teacher_units']=$teacher_units_id;
-                $teacher_units_id=[];
-                // dd($teacher_units_id);
+                $units[$key]['teacher_units']=$unit_teachers_id;
+                $unit_teachers_id=[];
+                // dd($unit_teachers_id);
             }
         }
         // dd($units->toArray());
@@ -233,3 +235,7 @@ class StudentsController extends Controller
         return redirect('students');
     }
 }
+
+
+
+$units = [];
