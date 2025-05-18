@@ -24,17 +24,14 @@
         </div>
         <div class="flex flex-col items-start justify-center mb-10">
             <label for="unit" class="mb-3 font-semibold text-lg">واحد درسی :</label>
-            <!-- <select name="unit" id="unit" class="outline-none w-full px-5 py-3 border-b"> -->
                 <ul>
                     @foreach($units as $unit)
                     <li>
                         <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5">
                         <label for="unit">{{ $unit->unitName }}</label>
-                        <!-- <option value="{,{ $unit->id },}">{,{ $unit->unitName },}</option> -->
                     </li>
                     @endforeach
                 </ul>
-            <!-- </select> -->
         </div>
         <div class="text-center">
             <button type="submit" class="px-10 py-2 rounded-lg border text-lg font-bold text-gray-600 transition-all duration-200 hover:bg-gray-500 hover:text-white">بزن ثبتو</button>

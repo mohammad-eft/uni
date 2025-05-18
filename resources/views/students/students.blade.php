@@ -24,15 +24,6 @@
                 <span class="block text-xl font-bold text-gray-600 py-3 border-l">
                    نام خانوادگی
                 </span>
-                <!-- <span class="block text-xl font-bold text-gray-600 py-3 border-l">
-                   سن
-                </span>
-                <span class="block text-xl font-bold text-gray-600 py-3 border-l">
-                   نام استاد
-                </span>
-                <span class="block text-xl font-bold text-gray-600 py-3 border-l">
-                  نام واحد درسی
-                </span> -->
                 <span class="block text-xl col-span-2 font-bold text-gray-600 py-3">
                     دکمه ها
                 </span>
@@ -50,21 +41,6 @@
                     <span class="block text-md font-semibold text-gray-600 py-3 border-l">
                         {{ $student->family }}
                     </span>
-                    <!-- <span class="block text-md font-semibold text-gray-600 py-3 border-l">
-                        {,{ $student->age },}
-                    </span> -->
-                    <!-- <span class="block text-md font-semibold text-gray-600 py-3 border-l">
-                        {,{ $teachers[$student->teacher] },}
-                    </span> -->
-                    <!-- <span class="block text-sm text-start font-normal text-gray-600 py-3 border-l">
-
-                        @foreach($units_id[$student->id] as $unit_id)
-
-                            {,{ $units[$unit_id]->unitName },}    </br>
-
-                        @endforeach
-
-                    </span> -->
                     <div class="text-md font-semibold text-gray-600 col-span-2 py-3 flex flex-row justify-between items-center">
                         <a href="{{ url('/students/show/' . $student->id) }}" class="block px-3 py-1 rounded-sm bg-blue-300 hover:bg-blue-600 hover:text-white transition-all duration-200 font-bold">نمایش</a>
                         <a href="{{ url('/students/edit/' . $student->id) }}" class="block px-3 py-1 rounded-sm bg-lime-300 hover:bg-green-600 hover:text-white transition-all duration-200 font-bold my-2">ویرایش</a>

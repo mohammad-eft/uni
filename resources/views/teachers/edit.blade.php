@@ -29,31 +29,17 @@
         </div>
         <div class="w-full flex flex-col items-start justify-around mt-5">
             <label for="unit" class="mb-3 font-semibold text-lg">واحد درسی :</label>
-            <!-- <select name="unit" id="unit" class="outline-none w-full px-5 py-3 border-b"> -->
-                <ul>
-                    <?php
-                    // dd($allUnits);
-                    $i=1;
-                    ?>
-                    @foreach($allUnits as $unit)
-                     
-                    <li>
-                        <?php //print_r($teacher_unit->toArray());
-                        echo $i;
-                        // dd($teacher->units);
-                        ?>
-                        <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5" @if(in_array($unit->id, $teacher->units)) {{ 'checked' }} @endif>
-                        <label for="unit">{{ $unit->unitName }}</label>
-                        <!-- <option value="{,{ $unit->id },}">{,{ $unit->unitName },}</option> -->
-                         <?php $i++; ?>
-                    </li>
-                        
-                    @endforeach
-                </ul>
-
-
-
-               
+            <ul>
+                <?php $i=1; ?>
+                @foreach($allUnits as $unit)
+                <li>
+                    <?= $i; ?>
+                    <input type="checkbox" name="unit[]" id="unit" value="{{ $unit->id }}" class="mb-5" @if(in_array($unit->id, $teacher->units)) {{ 'checked' }} @endif>
+                    <label for="unit">{{ $unit->unitName }}</label>
+                        <?php $i++; ?>
+                </li>
+                @endforeach
+            </ul>
         </div>
         <button type="submit" class="mt-10 bg-gray-400 text-white font-bold px-5 py-2 rounded-md hover:bg-slate-500 transition-all duration-200">بزن ثبتو</button>
     </form>

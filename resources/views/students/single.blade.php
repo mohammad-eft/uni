@@ -36,14 +36,6 @@
                     دکمه ها
                 </span>
             </div>
-            <?php 
-            // echo $teacher;
-            // foreach($teacher as $x){
-            //     echo $x."</br>";
-            // }
-            // print_r($teacher);
-            // dd($student->toArray());
-            ?>
             <div class="grid grid-cols-7 gap-5 my-3">        
                     <span class="block text-xl font-semibold text-gray-600 py-3 border-l">
                         {{ $student->id }}
@@ -58,19 +50,13 @@
                         {{ $student->age }}
                     </span>
                     <span class="block text-xl font-semibold text-gray-600 py-3 border-l">
-                        <!-- { { $ teacher->name . " " . $ teacher->family } } -->
                            @foreach($student->teacher as $teacher)
                            <span class="block">
                                {{ $teacher->name . " " . $teacher->family }} 
-
                            </span>
-                                
                            @endforeach
                     </span>
                     <span class="block text-start  text-sm font-normal text-gray-600 py-3 border-l">
-                        <!-- @ foreach($ units_id as $ unit_id)
-                            { { $ units[$ unit_id]->unitName  } } </br>
-                        @ endforeach -->
                         @foreach($student->unit as $unit)
                         <span class="block">
                             {{ $unit->unitName }}

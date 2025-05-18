@@ -44,11 +44,6 @@
                         {{ $teacher->family }}
                     </span>
                     <span class="text-md font-semibold col-span-2 text-gray-600 py-3 pl-5 border-l grid grid-cols-2 gap-4">
-                        <?php 
-                            // print_r($unit_id);
-                            // die();
-                            // var_dump($units[$unit]);
-                        ?>
                         <div>
                             <a href="{{ url('/teachers/show_units/' . $teacher->id) }}" class="block text-sm px-3 py-1 rounded-sm bg-blue-300 hover:bg-blue-600 hover:text-white transition-all duration-200 font-bold">
                                 ببین چی ارائه داده
@@ -59,23 +54,12 @@
                                 نمایش دانشجویان
                             </a>
                         </div>
-                        <!-- @ foreach($ unit_id as $ unit)
-                            @ foreach($ unit as $ x)
-
-                                {,{ $ units[$ x]-> unitName },} </br>
-
-                            @ endforeach
-                       {,{ $ unit[$ teacher->unit] },} 
-                        @ endforeach -->
                     </span>
                     <div class="text-sm font-semibold text-gray-600 py-3 flex flex-row justify-between items-center">
                         <a href="{{ url('/teachers/show/' . $teacher->id) }}" class="block px-3 py-1 rounded-sm bg-blue-300 hover:bg-blue-600 hover:text-white transition-all duration-200 font-bold">نمایش</a>
                         <a href="{{ url('/teachers/edit/' . $teacher->id) }}" class="block px-3 py-1 rounded-sm bg-lime-300 hover:bg-green-600 hover:text-white transition-all duration-200 font-bold">ویرایش</a>
                         <a href="{{ url('/teachers/delete/' . $teacher->id) }}" class="block px-3 py-1 rounded-sm bg-rose-400 hover:bg-rose-600 hover:text-white transition-all duration-200 font-bold">حذف</a>
                     </div>
-
-              
-
                 </div>
                 @endforeach
         </div>

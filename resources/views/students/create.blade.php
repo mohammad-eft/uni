@@ -11,8 +11,6 @@
     <h1 class="text-5xl font-bold text-blue-500 text-center my-10">
         ساخت دانشجو
     </h1>
-
-   
     <form action="{{ url('students/submit') }}" method="post" class="w-1/2 m-auto border rounded-xl p-10">
         @csrf
         <div class="flex flex-col items-start justify-center mb-10">
@@ -27,14 +25,6 @@
             <label for="age" class="mb-3 font-semibold text-lg">سن :</label>
             <input type="text" name="age" id="age" placeholder="سنتو بنویس دایی" class="outline-none w-full px-5 py-3 border-b" require>
         </div>
-        <!-- <div class="flex flex-col items-start justify-center mb-10">
-            <label for="teacher" class="mb-3 font-semibold text-lg">نام استاد :</label>
-            <select name="teacher" id="teacher" class="outline-none w-full px-5 py-3 border-b">
-                @ foreach($ teachers as $teacher)
-                <option value="{,{ $teacher->id }}">{,{ $teacher->name . " " . $teacher->family }}</option>
-                @ endforeach
-            </select>
-        </div> -->
         <div class="flex flex-col items-start justify-center mb-10">
             <label for="unit" class="mb-3 font-semibold text-lg">نام واحد درسی :</label>
                 <ul>
@@ -46,45 +36,13 @@
                         </div>
                         <div class="mr-10 mb-5">
                             <ul>
-                                <?php 
-                                    $i=1; 
-                                    // // dd($units_teachers);
-                                    // // foreach ($units_teachers['teachers'] as $teacher) {
-                                    // //     dd($teacher);
-                                    // // }
-                                    // // print_r($units_teachers);
-                                    // foreach ($units_teachers as $unit_teacher) {
-                                    //     foreach($unit_teacher as $techer){
-                                    //         foreach ($techer as $x) {
-                                    //             echo $x->name." ". $x->family ."</br>";
-                                    //         }
-                                    //     }
-                                    // }
-                                    // dd($teacherss);
-                                    // foreach($units as $unit){
-                                        // foreach ($unit->teachers as $teacher) {
-
-                                            // echo $teacher->name . " " . $teacher->family . " -- ";
-                                            // if ($teacher_unit->unit_id == $unit->id) {
-                                                // echo $teacher->name . " " . $teacher->family . "</br>";
-                                                // print_r($teacher['teachers']);
-                                            // }
-                                        // }
-                                    // }
-                                ?>
-                                <!-- @ foreach($ teacher_units as $ teacher_unit)
-                                    @ foreach($ teachers as $ teacher)
-                                        @ if($ teacher_unit- >unit_id = = $ unit->id) -->
-                                        @foreach($unit->teachers as $teacher)
-                                            <li>
-                                                <?php //dd($teacher->name); ?>
-                                                <input type="radio" name="{{ $unit->id }}" id="teacher" value="{{ $teacher->id }}">
-                                                <label for="teacher"> <?php echo $i . " : "; $i++ ?> {{ $teacher->name . " " . $teacher->family }}</label>
-                                            </li>
-                                        @endforeach
-                                        <!-- @ endif
-                                    @ endforeach
-                                @ endforeach -->
+                                <?php $i=1; ?>
+                                @foreach($unit->teachers as $teacher)
+                                    <li>
+                                        <input type="radio" name="{{ $unit->id }}" id="teacher" value="{{ $teacher->id }}">
+                                        <label for="teacher"> <?= $i . " : "; $i++; ?> {{ $teacher->name . " " . $teacher->family }}</label>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </li>
